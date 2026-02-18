@@ -1,0 +1,15 @@
+# Ambiente
+node_modules/
+dist/
+.env
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Arquivos do sistema
+.DS_Store
+
+# VSCode
+.vscode/
