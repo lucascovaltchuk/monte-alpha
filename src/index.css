@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Raleway:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 90 15% 97%;
+    --foreground: 100 30% 10%;
+
+    --card: 90 12% 95%;
+    --card-foreground: 100 30% 10%;
+
+    --popover: 90 15% 97%;
+    --popover-foreground: 100 30% 10%;
+
+    --primary: 93 28% 32%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 90 18% 88%;
+    --secondary-foreground: 100 30% 15%;
+
+    --muted: 90 10% 92%;
+    --muted-foreground: 100 8% 45%;
+
+    --accent: 80 35% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 90 12% 86%;
+    --input: 90 12% 86%;
+    --ring: 93 28% 32%;
+
+    --radius: 0.75rem;
+
+    --hero-overlay: linear-gradient(180deg, hsla(100, 30%, 8%, 0.55), hsla(93, 28%, 12%, 0.80));
+    --warm-gradient: linear-gradient(135deg, hsl(93, 28%, 32%), hsl(80, 35%, 45%));
+    --glow-primary: 0 0 40px hsla(93, 28%, 32%, 0.35);
+    --section-alt: 90 12% 93%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+  .font-body {
+    font-family: 'Raleway', sans-serif;
+  }
+  .hero-overlay {
+    background: var(--hero-overlay);
+  }
+  .warm-gradient {
+    background: var(--warm-gradient);
+  }
+  .bg-section-alt {
+    background-color: hsl(var(--section-alt));
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: hsla(100, 30%, 10%, 0.75);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid hsla(93, 28%, 32%, 0.15);
+  }
+
+  /* Card hover glow */
+  .card-hover {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 60px -12px hsla(93, 28%, 32%, 0.25);
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: var(--warm-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shine sweep animation */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+  .shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, hsla(0,0%,100%,0.15), transparent);
+    animation: shine-sweep 3s ease-in-out infinite;
+  }
+
+  /* Section divider */
+  .section-divider {
+    width: 48px;
+    height: 3px;
+    background: var(--warm-gradient);
+    border-radius: 9999px;
+    margin: 0 auto 1.5rem;
+  }
+}
+
+@keyframes shine-sweep {
+  0%   { left: -100%; }
+  50%  { left: 150%; }
+  100% { left: 150%; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0,0); }
+  10%       { transform: translate(-2%,-2%); }
+  30%       { transform: translate(2%,-1%); }
+  50%       { transform: translate(-1%,2%); }
+  70%       { transform: translate(1%,1%); }
+  90%       { transform: translate(-1%,-1%); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px hsla(93,28%,32%,0.3); }
+  50%       { box-shadow: 0 0 50px hsla(93,28%,32%,0.6); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
